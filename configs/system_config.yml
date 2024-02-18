@@ -1,5 +1,5 @@
 
 plot:
-  color: "#191970"  # midnight blue
+  color: "blue"  
 
 default_save_path: "/Users/farxane/Desktop/Data_Learning/DSI/software/assignment/Pokemon/"
