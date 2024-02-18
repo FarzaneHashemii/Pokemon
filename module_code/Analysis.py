@@ -3,7 +3,7 @@ import requests
 from pprint import pprint
 
 
-def load_data()
+#def load_data()
 ''' Retrieve data from the Pokemon API
 
 This function makes an HTTPS request to the Pokemon API and retrieves your selected 
