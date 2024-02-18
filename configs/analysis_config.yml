@@ -1,0 +1,14 @@
+
+visualization:
+  plot_title: "Plot_title"
+  x_axis_title: "xaxis"
+  y_axis_title: "yaxis"
+  figure_size:
+    width: 10
+    height: 6
+
+output:
+  save_path: "/path/to/analysis/output"
+  log_path: "path/to/log/file"
+  log_filename: "log_filename"
+
