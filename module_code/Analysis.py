@@ -35,3 +35,4 @@ pprint(response_json)
    # headers={'Title': title}
 #)
 
+def compute_analysis()
