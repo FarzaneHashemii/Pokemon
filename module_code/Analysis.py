@@ -9,7 +9,7 @@ def load_data() :
     This function makes an HTTPS request to the Pokemon API and retrieves your selected 
     data. The data is stored in the Analysis object.'''
 
-    url = 'https://pokeapi.co/api/v2/'
+    url = 'https://pokeapi.co/api/v2/pokemon/'
     try:
             response = requests.get(url)
             # Check if the request was successful (status code 200)
@@ -76,22 +76,12 @@ if __name__ == "__main__":
     notify_done("Your data analysis is complete and ready to view.")
 
 
-def compute_analysis()
-'''Analyze previously-loaded data.
+def compute_analysis() :
 
-This function runs an analytical measure of your choice (mean, median, linear regression, etc...)
-and returns the data in a format of your choice.
+    data=load_data()
+    print(data['results'][0]['name'])
 
-Parameters
-----------
-None
+    #pokemon_names = ()
+    #n=data['count']
+    #print(n)
 
-Returns
--------
-analysis_output : Any
-
-'''
-#most & least common Pokemon
-print('Pokemon: ' + pokeapi_data['pokemon'])
-data=load_data(pokeapi_data['pokemon'])
-print(data['results'])
