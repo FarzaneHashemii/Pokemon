@@ -64,10 +64,10 @@ class Analysis:
                     assert config_data is not None, f"{config_path} is empty or incorrectly formatted."
                     self.config = {**self.config, **config_data}
             except AssertionError as error:
-                logging.ERROR(f"Assertion Error: {error}")
+                logging.error(f"Assertion Error: {error}")
                 raise
             except Exception as e:
-                logging.ERROR(f"Failed to load {config_name}: {e}")
+                logging.error(f"Failed to load {config_name}: {e}")
                 raise
 
     def show_config(self):
@@ -90,7 +90,7 @@ class Analysis:
             analysis_obj.show_config()
         '''
         if not isinstance(self.config, dict):
-            logging.INFO("self.config is not a dictionary")
+            logging.info("self.config is not a dictionary")
             raise TypeError("Expected self.config to be a dictionary")  
     
         print("Consolidated Configuration:")
