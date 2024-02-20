@@ -97,4 +97,127 @@ class Analysis:
         for key, value in self.config.items():
             print(f"{key}: {value}")
 
+    def load_data(url) :
+        ''' Retrieve data from the Pokemon API
+
+        This function makes an HTTPS request to Pokemon API and retrieves your selected data. The data is
+        stored in the Analysis object.
+
+        Parameters
+        ----------
+        url
+
+        Returns
+        -------
+        data
+
+        Examples
+        --------
+        if __name__ == "__main__":
+        pokeapi_data = load_data()
+        '''
+        url = 'https://pokeapi.co/api/v2/pokemon/?limit=1025'
+        try:
+                response = requests.get(url)
+                # Check if the request was successful (status code 200)
+                response.raise_for_status()
+                    
+                    # Parse JSON response
+                data = response.json()
+                return data
+        except requests.exceptions.HTTPError as http_err:
+                # Handle HTTP errors (e.g., response code 4xx, 5xx)
+                print(f'HTTP error occurred: {http_err}')
+                logging.error(f'HTTP error occurred: {http_err}')
+        except Exception as err:
+                # Handle other possible errors (e.g., network issues)
+                 print(f'An error occurred: {err}')
+                 logging.error(f'An error occurred: {err}')
+                                    
+    def compute_analysis() :
+        '''Analyze previously-loaded data.
+
+        This function runs an analytical measure of your choice (mean, median, linear regression, etc...)
+        and returns the data in a format of your choice.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        analysis_output : Any
+        
+        '''
+        
+        data=load_data(url)
+
+
+        # Flatten data
+        df_nested_list = pd.json_normalize(data, record_path =['results'])
+        
+            
+        url = 'https://pokeapi.co/api/v2/pokemon-color/'
+        data=load_data(url)
+    
+
+        # Creating a dictionary with color ID as key and color name as value
+        values = [result['name'] for result in data['results']]
+        keys = [1,2,3,4,5,6,7,8,9,10]
+        colors = dict(zip(keys, values))
+    
+
+        pokemon_colors_species={}
+        pokemon_colors_count={}
+        a= 0
+        b= 1025
+        for k,v in colors.items() :
+            data=load_data(url+str(k)+'/')
+            pokemon_colors_species[v] = [species['name'] for species in data['pokemon_species']]
+            pokemon_colors_count[v] = len([species['name'] for species in data['pokemon_species']])
+            x=len([species['name'] for species in data['pokemon_species']])
+            if x > a :
+                most_common_color = v
+                a = x
+            if x < b :
+                least_common_color = v
+                b = x
+
+        print(pokemon_colors_species)
+        print(pokemon_colors_count)
+        print(most_common_color)
+        print(least_common_color)
+
+        def notify_done(message: str) -> None:
+                """Notify the user that analysis is complete.
+
+                Send a notification to the user through the ntfy.sh webpush service.
+
+                Parameters
+                ----------
+                message : str
+                    Text of the notification to send.
+                """
+                try:
+                    topic = '?topic'
+                    title = 'Analysis Complete'
+                    message = 'Your analysis has been successfully completed.'
+                
+                    url = f'https://ntfy.sh/'
+                    response = requests.post(url + topic,
+                        data=message.encode('utf-8'),
+                        headers={'Title': title}
+                    )
+                    response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+                    print("Notification sent successfully.")
+                except requests.exceptions.HTTPError as http_err:
+                    print(f'HTTP error occurred: {http_err}')
+                except Exception as err:
+                    print(f'An error occurred: {err}')
+
+            # Example usage
+            if __name__ == "__main__":
+                notify_done("Your data analysis is complete and ready to view.")
+
+
 
