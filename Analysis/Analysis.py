@@ -16,7 +16,7 @@ import os
 logging.basicConfig(level=logging.DEBUG, filename='config.log',
                     format='%(asctime)s - %(levelname)s - %(lineno)s - %(message)s')
 
-class Analyses:
+class Analysis:
     def __init__(self, analysis_config):
         ''' Load configurations into an Analysis object
 
