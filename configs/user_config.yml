@@ -1,5 +1,5 @@
 github:
-  api_token: "Not my real github token because this will be public"
+  api_token: "don't need one cause not using github_api"
 
 notification:
   ntfy_topic: "YOUR_NTFY_TOPIC_HERE"
