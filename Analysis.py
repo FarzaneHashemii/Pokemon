@@ -1,4 +1,5 @@
 
+#Starting off my importing required libraries
 import yaml
 import logging
 import requests
@@ -134,7 +135,7 @@ class Analysis:
                  print(f'An error occurred: {err}')
                  logging.error(f'An error occurred: {err}')
                                     
-    def compute_analysis() :
+    def compute_analysis(self) :
         '''Analyze previously-loaded data.
 
         This function runs an analytical measure of your choice (mean, median, linear regression, etc...)
@@ -150,7 +151,7 @@ class Analysis:
         
         '''
         
-        data=load_data(url)
+        data=self.load_data(url)
 
 
         # Flatten data
@@ -158,7 +159,7 @@ class Analysis:
         
             
         url = 'https://pokeapi.co/api/v2/pokemon-color/'
-        data=load_data(url)
+        data=self.load_data(url)
     
 
         # Creating a dictionary with color ID as key and color name as value
@@ -167,14 +168,14 @@ class Analysis:
         colors = dict(zip(keys, values))
     
 
-        pokemon_colors_species={}
-        pokemon_colors_count={}
+        self.pokemon_colors_species={}
+        self.pokemon_colors_count={}
         a= 0
         b= 1025
         for k,v in colors.items() :
-            data=load_data(url+str(k)+'/')
-            pokemon_colors_species[v] = [species['name'] for species in data['pokemon_species']]
-            pokemon_colors_count[v] = len([species['name'] for species in data['pokemon_species']])
+            data=self.load_data(url+str(k)+'/')
+            self.pokemon_colors_species[v] = [species['name'] for species in data['pokemon_species']]
+            self.pokemon_colors_count[v] = len([species['name'] for species in data['pokemon_species']])
             x=len([species['name'] for species in data['pokemon_species']])
             if x > a :
                 most_common_color = v
@@ -183,12 +184,12 @@ class Analysis:
                 least_common_color = v
                 b = x
 
-        print(pokemon_colors_species)
-        print(pokemon_colors_count)
+        print(self.pokemon_colors_species)
+        print(self.pokemon_colors_count)
         print(most_common_color)
         print(least_common_color)
 
-        def notify_done(message: str) -> None:
+        def notify_done(self, message: str) -> None:
                 """Notify the user that analysis is complete.
 
                 Send a notification to the user through the ntfy.sh webpush service.
@@ -220,9 +221,9 @@ class Analysis:
                 except Exception as err:
                     print(f'An error occurred: {err}')
 
-            notify_done('Analysis has been completed')
+        notify_done('Analysis has been completed')
 
-    def plot_data(save_path:Optional[str] = None) -> matplotlib.Figure :
+    def plot_data(self, save_path=None):
          ''' Analyze and plot data
 
          Generates a plot, display it to screen, and save it to the path in the parameter `save_path`, or 
@@ -243,8 +244,8 @@ class Analysis:
          fig, axs = plt.subplots(2, 1, figsize=(10, 12))
 
          # Bar chart
-         colors = list(pokemon_colors_count.keys())
-         counts = list(pokemon_colors_count.values())
+         colors = list(self.pokemon_colors_count.keys())
+         counts = list(self.pokemon_colors_count.values())
          axs[0].bar(colors, counts, color=colors, edgecolor='black')  # Adding edge color for visibility
 
          # Adding the count above each bar
@@ -260,7 +261,7 @@ class Analysis:
 
          # Line chart
          # Correcting the dictionary name used for sorting
-         sorted_color_counts = dict(sorted(pokemon_colors_count.items(), key=lambda item: item[1], reverse=True))
+         sorted_color_counts = dict(sorted(self.pokemon_colors_count.items(), key=lambda item: item[1], reverse=True))
          sorted_colors = list(sorted_color_counts.keys())
          sorted_counts = list(sorted_color_counts.values())
 
