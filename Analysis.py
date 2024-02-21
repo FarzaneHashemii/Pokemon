@@ -154,7 +154,7 @@ class Analysis:
         data=self.load_data()
 
         # Flatten data
-        df_nested_list = pd.json_normalize(data, record_path =['results'])
+        #df_nested_list = pd.json_normalize(data, record_path =['results'])
         
             
         data=self.load_data('https://pokeapi.co/api/v2/pokemon-color/')
