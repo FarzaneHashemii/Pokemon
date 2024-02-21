@@ -185,10 +185,10 @@ class Analysis:
                 least_common_color = v
                 b = x
 
-        print(self.pokemon_colors_species)
-        print(self.pokemon_colors_count)
-        print(most_common_color)
-        print(least_common_color)
+        #print(self.pokemon_colors_species)
+        #print(self.pokemon_colors_count)
+        #print(most_common_color)
+        #print(least_common_color)
 
 
         def notify_done( message: str) -> None:
