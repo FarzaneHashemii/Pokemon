@@ -1,5 +1,6 @@
 
 #Starting off my importing required libraries
+from urllib.parse import urlunparse
 import yaml
 import logging
 import requests
@@ -125,7 +126,7 @@ class Analysis:
                     
                     # Parse JSON response
                 data = response.json()
-                #return data
+                return data
         except requests.exceptions.HTTPError as http_err:
                 # Handle HTTP errors (e.g., response code 4xx, 5xx)
                 print(f'HTTP error occurred: {http_err}')
@@ -172,7 +173,7 @@ class Analysis:
         a= 0
         b= 1025
         for k,v in colors.items() :
-            data=self.load_data(url+str(k)+'/')
+            data=self.load_data(urlunparse+str(k)+'/')
             self.pokemon_colors_species[v] = [species['name'] for species in data['pokemon_species']]
             self.pokemon_colors_count[v] = len([species['name'] for species in data['pokemon_species']])
             x=len([species['name'] for species in data['pokemon_species']])
