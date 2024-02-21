@@ -223,7 +223,7 @@ class Analysis:
                     print(f'An error occurred: {err}')
 
         notify_done('Analysis has been completed')
-
+    
     def plot_data(self, save_path=None):
          ''' Analyze and plot data
 
