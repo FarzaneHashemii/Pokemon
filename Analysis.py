@@ -126,7 +126,7 @@ class Analysis:
                     
                     # Parse JSON response
                 data = response.json()
-                return data
+                #return data
         except requests.exceptions.HTTPError as http_err:
                 # Handle HTTP errors (e.g., response code 4xx, 5xx)
                 print(f'HTTP error occurred: {http_err}')
