@@ -158,6 +158,7 @@ class Analysis:
         
             
         data=self.load_data('https://pokeapi.co/api/v2/pokemon-color/')
+        print(data)
     
 
         # Creating a dictionary with color ID as key and color name as value
