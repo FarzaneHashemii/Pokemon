@@ -151,12 +151,12 @@ class Analysis:
         analysis_output : Any
         
         '''
-        
+        url = 'https://pokeapi.co/api/v2/pokemon/?limit=1025'
         data=self.load_data(url)
 
 
         # Flatten data
-        df_nested_list = pd.json_normalize(data, record_path =['results'])
+        #df_nested_list = pd.json_normalize(data, record_path =['results'])
         
             
         url = 'https://pokeapi.co/api/v2/pokemon-color/'
