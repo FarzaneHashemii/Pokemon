@@ -2,4 +2,4 @@ github:
   api_token: "don't need one cause not using github_api"
 
 notification:
-  ntfy_topic: "YOUR_NTFY_TOPIC_HERE"
+  ntfy_topic: "YSlYtkDXpplz4OqW"

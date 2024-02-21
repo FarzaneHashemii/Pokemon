@@ -197,6 +197,11 @@ class Analysis:
                 ----------
                 message : str
                     Text of the notification to send.
+
+                Example
+                --------
+                if __name__ == "__main__":
+                    notify_done("Your data analysis is complete and ready to view.")
                 """
                 try:
                     topic = '?topic'
@@ -204,7 +209,7 @@ class Analysis:
                     message = 'Your analysis has been successfully completed.'
                 
                     url = f'https://ntfy.sh/'
-                    response = requests.post(url + topic,
+                    response = requests.post(url + 'YSlYtkDXpplz4OqW',
                         data=message.encode('utf-8'),
                         headers={'Title': title}
                     )
@@ -215,9 +220,67 @@ class Analysis:
                 except Exception as err:
                     print(f'An error occurred: {err}')
 
-            # Example usage
-            if __name__ == "__main__":
-                notify_done("Your data analysis is complete and ready to view.")
+            notify_done('Analysis has been completed')
 
+    def plot_data(save_path:Optional[str] = None) -> matplotlib.Figure :
+         ''' Analyze and plot data
 
+         Generates a plot, display it to screen, and save it to the path in the parameter `save_path`, or 
+         the path from the configuration file if not specified.
 
+         Parameters
+         ----------
+         save_path : str, optional
+            Save path for the generated figure
+
+         Returns
+         -------
+         fig : matplotlib.Figure
+
+         '''
+
+         # Create a figure and a set of subplots
+         fig, axs = plt.subplots(2, 1, figsize=(10, 12))
+
+         # Bar chart
+         colors = list(pokemon_colors_count.keys())
+         counts = list(pokemon_colors_count.values())
+         axs[0].bar(colors, counts, color=colors, edgecolor='black')  # Adding edge color for visibility
+
+         # Adding the count above each bar
+         for i, bar in enumerate(axs[0].patches):
+             yval = bar.get_height()
+             axs[0].text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')
+
+         # Adding title and labels for bar chart
+         axs[0].set_title('Color Counts')
+         axs[0].set_xlabel('Color')
+         axs[0].set_ylabel('Count')
+         axs[0].set_xticklabels(colors, rotation=45)
+
+         # Line chart
+         # Correcting the dictionary name used for sorting
+         sorted_color_counts = dict(sorted(pokemon_colors_count.items(), key=lambda item: item[1], reverse=True))
+         sorted_colors = list(sorted_color_counts.keys())
+         sorted_counts = list(sorted_color_counts.values())
+
+         # Drawing the blue line
+         axs[1].plot(sorted_colors, sorted_counts, marker='o', linestyle='-', color='blue', linewidth=2)
+
+         # Plotting each point with its specific color and outlining white for visibility
+         for i, (color, count) in enumerate(zip(sorted_colors, sorted_counts)):
+             axs[1].plot(i, count, marker='o', markersize=10, linestyle='', color=color, markeredgecolor='black' if color == 'white' else 'none')
+             axs[1].text(i, count, str(count), ha='center', va='bottom', fontsize=12)
+
+         # Adding title and labels for line chart
+         axs[1].set_title('Color Counts Sorted High to Low')
+         axs[1].set_xlabel('Color')
+         axs[1].set_ylabel('Count')
+         axs[1].set_xticks(range(len(sorted_colors)))
+         axs[1].set_xticklabels(sorted_colors, rotation=45)
+
+         # Adjust layout to prevent overlap
+         plt.tight_layout()
+
+         # Display the plot
+         plt.show()   
