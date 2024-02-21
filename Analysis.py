@@ -99,7 +99,7 @@ class Analysis:
         for key, value in self.config.items():
             print(f"{key}: {value}")
 
-    def load_data(url) :
+    def load_data(self, url) :
         ''' Retrieve data from the Pokemon API
 
         This function makes an HTTPS request to Pokemon API and retrieves your selected data. The data is
