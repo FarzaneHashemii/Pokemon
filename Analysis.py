@@ -99,7 +99,7 @@ class Analysis:
         for key, value in self.config.items():
             print(f"{key}: {value}")
 
-    def load_data(self, url) :
+    def load_data(self, url='https://pokeapi.co/api/v2/pokemon/?limit=1025') :
         ''' Retrieve data from the Pokemon API
 
         This function makes an HTTPS request to Pokemon API and retrieves your selected data. The data is
@@ -118,7 +118,6 @@ class Analysis:
         if __name__ == "__main__":
         pokeapi_data = load_data()
         '''
-        url = 'https://pokeapi.co/api/v2/pokemon/?limit=1025'
         try:
                 response = requests.get(url)
                 # Check if the request was successful (status code 200)
@@ -151,16 +150,14 @@ class Analysis:
         analysis_output : Any
         
         '''
-        url = 'https://pokeapi.co/api/v2/pokemon/?limit=1025'
-        data=self.load_data(url)
-
+        
+        data=self.load_data()
 
         # Flatten data
-        #df_nested_list = pd.json_normalize(data, record_path =['results'])
+        df_nested_list = pd.json_normalize(data, record_path =['results'])
         
             
-        url = 'https://pokeapi.co/api/v2/pokemon-color/'
-        data=self.load_data(url)
+        data=self.load_data('https://pokeapi.co/api/v2/pokemon-color/')
     
 
         # Creating a dictionary with color ID as key and color name as value
