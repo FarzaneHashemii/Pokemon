@@ -172,8 +172,9 @@ class Analysis:
         self.pokemon_colors_count={}
         a= 0
         b= 1025
+        base_url='https://pokeapi.co/api/v2/pokemon-color/'
         for k,v in colors.items() :
-            data=self.load_data(urlunparse+str(k)+'/')
+            data=self.load_data((base_url+str(k)+'/'))
             self.pokemon_colors_species[v] = [species['name'] for species in data['pokemon_species']]
             self.pokemon_colors_count[v] = len([species['name'] for species in data['pokemon_species']])
             x=len([species['name'] for species in data['pokemon_species']])
