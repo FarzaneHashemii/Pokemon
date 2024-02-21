@@ -191,7 +191,7 @@ class Analysis:
         print(least_common_color)
 
 
-        def notify_done(self, message: str) -> None:
+        def notify_done( message: str) -> None:
                 """Notify the user that analysis is complete.
 
                 Send a notification to the user through the ntfy.sh webpush service.
@@ -223,10 +223,10 @@ class Analysis:
                 except Exception as err:
                     print(f'An error occurred: {err}')
 
-        self.notify_done('Analysis has been completed')
+        notify_done('Analysis has been completed')
 
-        return('Most common color amoung Pokemon Species is : ' + most_common_color+
-               '\n' +'Least common color amoung Pokemon Species is : ' +least_common_color )
+        return(print('Most common color amoung Pokemon Species is : ' + most_common_color+
+               '\n' +'Least common color amoung Pokemon Species is : ' +least_common_color ))
     
     def plot_data(self, save_path=None):
          ''' Analyze and plot data
