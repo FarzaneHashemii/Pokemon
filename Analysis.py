@@ -53,8 +53,8 @@ class Analysis:
             analysis_obj = Analysis('configs/analysis_config.yml')
         '''
         config_paths = {
-            'system_config_path': 'configs/system_config.yml',
-            'user_config_path': 'configs/user_config.yml',
+            'system_config_path': 'Pokemon/configs/system_config.yml',
+            'user_config_path': 'Pokemon/configs/user_config.yml',
             'analysis_config_path': analysis_config
         }
 
@@ -207,12 +207,13 @@ class Analysis:
                     notify_done("Your data analysis is complete and ready to view.")
                 """
                 try:
-                    topic = '?topic'
+                    topic = Analysis['topic']
+                    topic = 'YSlYtkDXpplz4OqW'
                     title = 'Analysis Complete'
                     message = 'Your analysis has been successfully completed.'
                 
                     url = f'https://ntfy.sh/'
-                    response = requests.post(url + 'YSlYtkDXpplz4OqW',
+                    response = requests.post(url + topic,
                         data=message.encode('utf-8'),
                         headers={'Title': title}
                     )
@@ -246,7 +247,7 @@ class Analysis:
          '''
 
          # Create a figure and a set of subplots
-         fig, axs = plt.subplots(2, 1, figsize=(10, 12))
+         fig, axs = plt.subplots(2, 1, figsize=(Analysis['visualization']['figure_size']['width'], Analysis['visualization']['figure_size']['height'])
 
          # Bar chart
          colors = list(self.pokemon_colors_count.keys())
@@ -259,9 +260,9 @@ class Analysis:
              axs[0].text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')
 
          # Adding title and labels for bar chart
-         axs[0].set_title('Color Counts')
-         axs[0].set_xlabel('Color')
-         axs[0].set_ylabel('Count')
+         axs[0].set_title(Analysis['visualizationn']['plot_title'])
+         axs[0].set_xlabel(Analysis['visualization']['x_axis_title'])
+         axs[0].set_ylabel(Analysis['visualization']['y_axis_title'])
          axs[0].set_xticklabels(colors, rotation=45)
 
          # Line chart
@@ -271,7 +272,7 @@ class Analysis:
          sorted_counts = list(sorted_color_counts.values())
 
          # Drawing the blue line
-         axs[1].plot(sorted_colors, sorted_counts, marker='o', linestyle='-', color='blue', linewidth=2)
+         axs[1].plot(sorted_colors, sorted_counts, marker='o', linestyle='-', color=Analysis['plot']['color'], linewidth=2)
 
          # Plotting each point with its specific color and outlining white for visibility
          for i, (color, count) in enumerate(zip(sorted_colors, sorted_counts)):
