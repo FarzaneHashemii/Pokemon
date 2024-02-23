@@ -247,7 +247,7 @@ class Analysis:
          '''
 
          # Create a figure and a set of subplots
-         fig, axs = plt.subplots(2, 1, figsize=(Analysis['visualization']['figure_size']['width'], Analysis['visualization']['figure_size']['height'])
+         fig, axs = plt.subplots(2, 1, figsize=(Analysis['visualization']['figure_size']['width'], Analysis['visualization']['figure_size']['height']))
 
          # Bar chart
          colors = list(self.pokemon_colors_count.keys())
