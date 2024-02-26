@@ -296,3 +296,4 @@ class Analysis:
 
          # Display the plot
          plt.show()   
+         plt.savefig('plot.png')
