@@ -1,0 +1,13 @@
+2024-02-26 12:03:49,567 - ERROR - 71 - Assertion Error: Pokemon/configs/system_config.yml does not exist.
+2024-02-26 12:05:12,176 - ERROR - 71 - Assertion Error: config.yml does not exist.
+2024-02-26 12:05:16,148 - ERROR - 71 - Assertion Error: config.yml does not exist.
+2024-02-26 12:05:17,296 - ERROR - 71 - Assertion Error: config.yml does not exist.
+2024-02-26 12:05:52,431 - ERROR - 71 - Assertion Error: configs/config.ymlconfig.yml does not exist.
+2024-02-26 12:40:32,251 - DEBUG - 1019 - Starting new HTTPS connection (1): pokeapi.co:443
+2024-02-26 12:40:32,604 - DEBUG - 474 - https://pokeapi.co:443 "GET /api/v2/pokemon/?limit=1025 HTTP/1.1" 200 None
+2024-02-26 12:40:46,137 - DEBUG - 1019 - Starting new HTTPS connection (1): pokeapi.co:443
+2024-02-26 12:40:46,535 - DEBUG - 474 - https://pokeapi.co:443 "GET /api/v2/pokemon/?limit=1025 HTTP/1.1" 200 None
+2024-02-26 12:42:12,841 - DEBUG - 1019 - Starting new HTTPS connection (1): pokeapi.co:443
+2024-02-26 12:42:12,921 - DEBUG - 474 - https://pokeapi.co:443 "GET /api/v2/pokemon/?limit=1025 HTTP/1.1" 200 None
+2024-02-26 12:42:17,377 - DEBUG - 1019 - Starting new HTTPS connection (1): pokeapi.co:443
+2024-02-26 12:42:17,446 - DEBUG - 474 - https://pokeapi.co:443 "GET /api/v2/pokemon/?limit=1025 HTTP/1.1" 200 None

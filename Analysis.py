@@ -51,10 +51,12 @@ class Analysis:
         --------
         if __name__ == "__main__":
             analysis_obj = Analysis('configs/analysis_config.yml')
+        input=config.yml
+        output=Analysis(config.yml)
         '''
         config_paths = {
-            'system_config_path': 'Pokemon/configs/system_config.yml',
-            'user_config_path': 'Pokemon/configs/user_config.yml',
+            'system_config_path': 'configs/system_config.yml',
+            'user_config_path': 'configs/user_config.yml',
             'analysis_config_path': analysis_config
         }
 
@@ -96,9 +98,12 @@ class Analysis:
             logging.info("self.config is not a dictionary")
             raise TypeError("Expected self.config to be a dictionary")  
     
-        print("Consolidated Configuration:")
+        #Return configurations loaded as a string instead of printing them.
+        config_str = "Consolidated Configuration:\n"
         for key, value in self.config.items():
-            print(f"{key}: {value}")
+            config_str += f"    {key}: {value}\n"
+        return config_str.strip()  # Strip to remove the last newline for cleaner comparison
+
 
     def load_data(self, url='https://pokeapi.co/api/v2/pokemon/?limit=1025') :
         ''' Retrieve data from the Pokemon API
@@ -108,7 +113,7 @@ class Analysis:
 
         Parameters
         ----------
-        url
+        url, default set to 'https://pokeapi.co/api/v2/pokemon/?limit=1025'
 
         Returns
         -------
@@ -117,7 +122,7 @@ class Analysis:
         Examples
         --------
         if __name__ == "__main__":
-        pokeapi_data = load_data()
+        pokeapi_data = self.load_data()
         '''
         try:
                 response = requests.get(url)
