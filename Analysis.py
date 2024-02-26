@@ -8,6 +8,7 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 import os
+import importlib.resources as pkg_resources
 
 
 #Starting off my importing required libraries
@@ -55,8 +56,8 @@ class Analysis:
         output=Analysis(config.yml)
         '''
         config_paths = {
-            'system_config_path': 'system_config.yml',
-            'user_config_path': 'user_config.yml',
+            'system_config_path':'system_config.yml',
+            'user_config_path':'user_config.yml',
             'analysis_config_path': analysis_config
         }
 
@@ -64,7 +65,8 @@ class Analysis:
         for config_name, config_path in config_paths.items():
             try:
                 #assert os.path.exists(config_path), f"{config_path} does not exist."
-                with open(config_path, 'r') as file:
+                with pkg_resources.open_text('my_package.configs', config_path) as file:
+                #with open(config_path, 'r') as file:
                     config_data = yaml.safe_load(file)
                     assert config_data is not None, f"{config_path} is empty or incorrectly formatted."
                     self.config = {**self.config, **config_data}
