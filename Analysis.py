@@ -207,8 +207,8 @@ class Analysis:
                     notify_done("Your data analysis is complete and ready to view.")
                 """
                 try:
-                    topic = Analysis['topic']
-                    topic = 'YSlYtkDXpplz4OqW'
+                    topic = self.config['topic']
+                    #topic = 'YSlYtkDXpplz4OqW'
                     title = 'Analysis Complete'
                     message = 'Your analysis has been successfully completed.'
                 
@@ -247,7 +247,7 @@ class Analysis:
          '''
 
          # Create a figure and a set of subplots
-         fig, axs = plt.subplots(2, 1, figsize=(Analysis['visualization']['figure_size']['width'], Analysis['visualization']['figure_size']['height']))
+         fig, axs = plt.subplots(2, 1, figsize=(self.config['visualization']['figure_size']['width'], self.config['visualization']['figure_size']['height']))
 
          # Bar chart
          colors = list(self.pokemon_colors_count.keys())
@@ -260,9 +260,9 @@ class Analysis:
              axs[0].text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')
 
          # Adding title and labels for bar chart
-         axs[0].set_title(Analysis['visualizationn']['plot_title'])
-         axs[0].set_xlabel(Analysis['visualization']['x_axis_title'])
-         axs[0].set_ylabel(Analysis['visualization']['y_axis_title'])
+         axs[0].set_title(self.config['visualizationn']['plot_title'])
+         axs[0].set_xlabel(self.config['visualization']['x_axis_title'])
+         axs[0].set_ylabel(self.config['visualization']['y_axis_title'])
          axs[0].set_xticklabels(colors, rotation=45)
 
          # Line chart
@@ -272,7 +272,7 @@ class Analysis:
          sorted_counts = list(sorted_color_counts.values())
 
          # Drawing the blue line
-         axs[1].plot(sorted_colors, sorted_counts, marker='o', linestyle='-', color=Analysis['plot']['color'], linewidth=2)
+         axs[1].plot(sorted_colors, sorted_counts, marker='o', linestyle='-', color=self.config['plot']['color'], linewidth=2)
 
          # Plotting each point with its specific color and outlining white for visibility
          for i, (color, count) in enumerate(zip(sorted_colors, sorted_counts)):
