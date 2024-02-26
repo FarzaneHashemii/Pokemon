@@ -3,6 +3,9 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[project.optional-dependencies]
+configs = ["*.yml"]
+
 [project]
 name = "Analysis"
 version = "0.0.1"
