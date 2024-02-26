@@ -2,8 +2,8 @@
 def test_analysis_config():
     from analysis import Analysis
 
-    input='configs/config.yml'
-    output= Analysis('configs/config.yml')
+    input='config.yml'
+    output= Analysis('config.yml')
     output= output.show_config()
     expected_output= """Consolidated Configuration:
     plot: {'color': 'blue'}

@@ -55,8 +55,8 @@ class Analysis:
         output=Analysis(config.yml)
         '''
         config_paths = {
-            'system_config_path': 'configs/system_config.yml',
-            'user_config_path': 'configs/user_config.yml',
+            'system_config_path': 'system_config.yml',
+            'user_config_path': 'user_config.yml',
             'analysis_config_path': analysis_config
         }
 
