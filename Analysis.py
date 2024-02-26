@@ -65,7 +65,7 @@ class Analysis:
         for config_name, config_path in config_paths.items():
             try:
                 #assert os.path.exists(config_path), f"{config_path} does not exist."
-                with pkg_resources.open_text('my_package.configs', config_path) as file:
+                with pkg_resources.open_text('Analysis.configs', config_path) as file:
                 #with open(config_path, 'r') as file:
                     config_data = yaml.safe_load(file)
                     assert config_data is not None, f"{config_path} is empty or incorrectly formatted."
